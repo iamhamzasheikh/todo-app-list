@@ -1,5 +1,18 @@
 const inputBox = document.getElementById('input-box');
 const listContainer = document.getElementById('list-container');
+var icon = document.getElementById('icon');
+
+
+icon.onclick = function () {
+    document.body.classList.toggle('dark-theme')
+    if (document.body.classList.contains('dark-theme')) {
+        icon.src = '/images/sun.png'
+    } else {
+        icon.src = '/images/moon.png'
+    }
+}
+
+
 
 function addTask() {
     if (inputBox.value === '') {

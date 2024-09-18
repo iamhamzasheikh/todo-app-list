@@ -1,5 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+/* Define color and style variables */
+:root {
+    --light-background: linear-gradient(135deg, #153677, #4e085f);
+    --dark-background: #161513;
+    --light-text-color: #000;
+    --dark-text-color: #fff;
+    --todo-app-background-light: #fff;
+    --todo-app-background-dark: #2c2c2c;
+    --header-text-color-light: #002765;
+    --header-text-color-dark: #fff;
+    --row-background-light: #edeef0;
+    --row-background-dark: #2c2c2c;
+    --button-background: #ff5945;
+    --border-color: slateblue;
+    --shadow-color: rgba(0, 0, 0, 0.02);
+    --shadow-color-dark: rgba(27, 31, 35, 0.15);
+    --h2-dark-color: #fff;
+    /* White color for h2 in dark mode */
+    --input-border-light: transparent;
+    /* Light mode input border color */
+    --input-border-dark: #fff;
+    /* Dark mode input border color */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -12,17 +36,18 @@ body {
     font-family: 'Outfit', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: var(--light-background);
+    color: var(--light-text-color);
 }
 
 .container {
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(135deg, #153677, #4e085f);
     padding: 10px;
 
     .todo-app {
         width: 540px;
-        background: white;
+        background: var(--todo-app-background-light);
         margin: 0 auto;
         padding: 40px 30px 70px;
         border-radius: 10px;
@@ -30,18 +55,32 @@ body {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        border: 2px solid var(--border-color);
 
-        h2 {
-            color: #002765;
+        .header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
-            font-size: 28px;
-            font-weight: 700;
+            justify-content: space-between;
+            height: 50px;
+            margin-bottom: 10px;
+
+            h2 {
+                /* color: var(--header-text-color-light); */
+                display: flex;
+                align-items: center;
+                margin: 0;
+                font-size: 28px;
+                font-weight: 700;
+
+                img {
+                    width: 30px;
+                    margin-left: 10px;
+                }
+            }
 
             img {
-                width: 30px;
-                margin-left: 10px;
+                width: 35px;
+                cursor: pointer;
             }
         }
 
@@ -49,7 +88,7 @@ body {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: #edeef0;
+            background: var(--row-background-light);
             border-radius: 30px;
             padding-left: 20px;
             margin-bottom: 25px;
@@ -60,17 +99,21 @@ body {
                 outline: none;
                 background: transparent;
                 padding: 10px;
-                font-weight: 14px;
+                font-weight: 18px;
+                border: 2px solid var(--input-border-light);
+                /* Default input border color */
             }
 
             button {
                 border: none;
                 outline: none;
                 padding: 16px 50px;
-                background: #ff5945;
-                font-size: 16px;
+                background: var(--button-background);
+                font-size: 1.09rem;
                 cursor: pointer;
                 border-radius: 40px;
+                color: white;
+                font-weight: 550;
             }
         }
 
@@ -78,6 +121,7 @@ body {
             min-height: 100px;
             max-height: 290px;
             overflow-y: auto;
+            /* border: 2px solid seagreen; */
 
             li {
                 list-style: none;
@@ -99,7 +143,6 @@ body {
                 background-position: center;
                 top: 12px;
                 left: 8px;
-
             }
 
             li.checked {
@@ -113,11 +156,11 @@ body {
 
             span {
                 position: absolute;
-                right: 0;
+                right: 5px;
                 top: 5px;
                 width: 40px;
                 height: 40px;
-                font-size: 22px;
+                font-size: 30px;
                 color: #555;
                 line-height: 40px;
                 text-align: center;
@@ -126,8 +169,12 @@ body {
             }
 
             span:hover {
-                cursor: pointer;
-                background-color: #edeef0;
+                background-color: var(--row-background-light);
+                color: red;
+                transform: scale(1.2);
+                /* Slight zoom effect */
+                transition: transform 0.3s ease, color 0.3s ease;
+                /* Smooth transition for the zoom and color */
             }
         }
     }
@@ -143,30 +190,91 @@ body {
             left: 0;
             transform: none;
 
-
             ul {
                 min-height: 400px;
                 max-height: 500px;
-                overflow-y: auto;
                 margin-top: 20px;
                 border-radius: 10px;
-                box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+                box-shadow: var(--shadow-color) 0px 1px 3px 0px, var(--shadow-color-dark) 0px 0px 0px 1px;
             }
         }
     }
 
     @media (min-width:50px) and (max-width: 400px) {
         .row {
-
             input {
                 width: 100%;
             }
 
             button {
-                width: 50%;
+                width: 30%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
             }
         }
     }
+}
 
+/* Dark theme styles */
+body.dark-theme {
+    background: var(--light-background);
+    color: var(--dark-text-color);
+}
 
+body.dark-theme .todo-app {
+    background: var(--todo-app-background-dark);
+    border-color: transparent;
+}
+
+body.dark-theme .header h2 {
+    color: var(--header-text-color-dark);
+    /* Dark mode color for header */
+}
+
+body.dark-theme .row {
+    background: var(--row-background-dark) !important;
+}
+
+body.dark-theme button {
+    background: var(--button-background);
+}
+
+body.dark-theme input {
+    color: var(--dark-text-color);
+    /* Dark mode text color */
+}
+
+body.dark-theme input::placeholder {
+    color: var(--dark-text-color);
+    /* White placeholder text in dark mode */
+}
+
+body.dark-theme .row {
+    background: var(--row-background-dark) !important;
+    border: 2px solid var(--border-color);
+    border-radius: 50px !important;
+    /* Maintain the border-radius */
+}
+
+body.dark-theme ul li span {
+    color: var(--dark-text-color) !important;
+    /* Change cross (span) color to white in dark mode */
+}
+
+/* For the span (close button) color in dark mode */
+body.dark-theme ul li span {
+    color: var(--dark-text-color) !important;
+    /* Change cross (span) color to white in dark mode */
+}
+
+/* Hover effect on the close button (span) in dark mode */
+body.dark-theme ul li span:hover {
+    color: red !important;
+    /* Turn the cross icon red */
+    transform: scale(1.2);
+    /* Slight zoom effect */
+    transition: transform 0.3s ease, color 0.3s ease;
+    /* Smooth transition for the zoom and color */
 }
